@@ -23,15 +23,21 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val itemList: MutableList<ItemData?> = MutableList(200) { null }
-        val adapter = ItemAdapter(itemList, ::onListItemClicked)
+        val itemList = listOf(
+            Pessoa("Pessoa 1", "https://br.trace.tv/wp-content/uploads/2023/12/01-10-2.png"),
+            Pessoa("Pessoa 2", "https://br.trace.tv/wp-content/uploads/2023/12/01-10-2.png"),
+            Pessoa("Pessoa 3", "https://br.trace.tv/wp-content/uploads/2023/12/01-10-2.png"),
+            Pessoa("Pessoa 4", "https://br.trace.tv/wp-content/uploads/2023/12/01-10-2.png"),
+        )
+
+        val adapter = PessoaAdapter(itemList, ::onListItemClicked)
         val layoutManager = LinearLayoutManager(this)
 
         binding.recyclerViewItems.adapter = adapter
         binding.recyclerViewItems.layoutManager = layoutManager
     }
 
-    private fun onListItemClicked(itemData: ItemData) {
-        Toast.makeText(this, itemData.toString(), Toast.LENGTH_LONG).show()
+    private fun onListItemClicked(pessoa: Pessoa) {
+        Toast.makeText(this, pessoa.toString(), Toast.LENGTH_LONG).show()
     }
 }
